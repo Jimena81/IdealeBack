@@ -13,7 +13,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->string('file_name');
-            $table->binary('file_data'); // Cambio de file_path a file_data para almacenar los datos binarios de la imagen
+            $table->string('file_path');
             $table->timestamps();
         });
     }

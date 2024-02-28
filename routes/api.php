@@ -23,5 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/photos', [PhotoController::class, 'store'])->name('photos.store'); // Ruta para almacenar una nueva foto
-Route::delete('/photos/{id}', [PhotoController::class, 'destroy'])->name('photos.destroy'); // Ruta para eliminar una foto
+Route::prefix('photos')->group(function () {
+    Route::post('/', [PhotoController::class, 'store'])->name('photos.store');
+    Route::delete('/{id}', [PhotoController::class, 'delete'])->name('photos.delete');
+    Route::get('/{id}', [PhotoController::class, 'show'])->name('photos.show');
+});
